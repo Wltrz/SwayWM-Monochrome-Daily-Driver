@@ -63,13 +63,11 @@ This is a fork of a Rice I really liked, so I customized it for my personal use.
   folder that holds your wallpapers, e.g.
   `Quickshell.env("HOME") + "/Pictures/Background/"`.
   Move `midnight.jpg` (included in this repo) into that folder.
-- `gtklock/config.ini`: the `style=` line has a `YOURUSER` placeholder.
-  Replace it with your actual Linux username.
 
 ## Install
 1. Clone the repo:
    ```
-   git clone https://github.com/Wltrz/SwayWM-Monochrome-Personal-Setup
+   git clone https://github.com/Wltrz/SwayWM-Monochrome-Daily-Driver
    cd SwayWM-Monochrome-Personal-Setup
    ```
 2. Copy the dotfiles into `~/.config/`, backing up anything already there:
