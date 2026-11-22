@@ -1,0 +1,65 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 10,
+    "margin-left": 15,
+    "margin-right": 15,
+    "height": 34,
+    "spacing": 10,
+    "modules-left": ["custom/launcher", "sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "network", "bluetooth", "power-profiles-daemon", "pulseaudio", "battery", "tray", "custom/power"],
+
+    "custom/launcher": {
+        "format": "Apps",
+        "on-click": "wofi --show drun",
+        "tooltip": false
+    },
+    "sway/workspaces": {
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+    "clock": {
+        "format": "\uf017  {:%H:%M}",
+        "format-alt": "\udb80\udced  {:%A, %B %d}",
+        "tooltip": false
+    },
+    "cpu": { "format": "\uf4bc  {usage}%" },
+    "memory": { "format": "\udb80\udf5b  {}%" },
+    "network": {
+        "format-wifi": "\udb81\udda9  {signalStrength}%",
+        "format-ethernet": "\udb80\ude00 Wired",
+        "format-disconnected": "\udb82\udd2e Off",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+    "bluetooth": {
+        "format": "\udb80\udcaf",
+        "format-disabled": "\udb80\udcb2",
+        "format-off": "\udb80\udcb2",
+        "format-connected": "\udb80\udcb1 {num_connections}",
+        "tooltip-format": "{controller_alias}",
+        "on-click": "blueman-manager"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon} {profile}",
+        "tooltip-format": "Profile: {profile}",
+        "format-icons": {
+            "default": "\udb81\uddd1",
+            "performance": "\udb81\udcc5",
+            "balanced": "\udb81\uddd1",
+            "power-saver": "\udb80\udf2a"
+        }
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "\udb81\udf5f",
+        "format-icons": ["\udb81\udd7f", "\udb81\udd80", "\udb81\udd7e"]
+    },
+    "custom/power": {
+           "format": "\uf011",
+           "tooltip": false,
+           "on-click": "qs -c menus ipc call power toggle"
+    }
+}
