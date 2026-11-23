@@ -24,15 +24,20 @@ case "$1" in
     *)
         VID="$1"
         [ -f "$VID" ] || exit 1
-        printf '%s\n' "$VID" > "$LIVE"
+        SAVE=1
         ;;
 esac
 
 [ -f "$VID" ] || exit 1
+command -v mpvpaper >/dev/null || exit 1
 
 OLD="$(pgrep -x mpvpaper)"
-pkill -x swaybg
 setsid -f mpvpaper -o "no-audio loop-file=inf hwdec=auto panscan=1.0" '*' "$VID" >/dev/null 2>&1
 sleep 0.5
+NEW="$(pgrep -nx mpvpaper)"
+[ -n "$NEW" ] || exit 1
+case " $(echo $OLD) " in *" $NEW "*) exit 1 ;; esac
 [ -n "$OLD" ] && kill $OLD 2>/dev/null
+pkill -x swaybg
+[ -n "$SAVE" ] && printf '%s\n' "$VID" > "$LIVE"
 exit 0
