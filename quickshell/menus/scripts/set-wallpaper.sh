@@ -23,6 +23,7 @@ if [ "$1" != "--restore" ]; then
     rm -f "$CACHE/live-wallpaper"
 fi
 
+command -v swaybg >/dev/null || exit 1
 # ---- apply ----
 OLD="$(pgrep -x swaybg)"
 setsid -f swaybg -i "$IMG" -m fill >/dev/null 2>&1
