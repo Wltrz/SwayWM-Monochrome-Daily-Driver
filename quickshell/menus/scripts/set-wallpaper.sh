@@ -18,16 +18,19 @@ else
 fi
 
 [ -f "$IMG" ] || exit 1
+
+# ---- apply ----
+command -v swaybg >/dev/null || exit 1
+OLD="$(pgrep -x swaybg)"
+setsid -f swaybg -i "$IMG" -m fill >/dev/null 2>&1
+sleep 0.3
+NEW="$(pgrep -nx swaybg)"
+[ -n "$NEW" ] || exit 1
+case " $(echo $OLD) " in *" $NEW "*) exit 1 ;; esac
+[ -n "$OLD" ] && kill $OLD 2>/dev/null
+pkill -x mpvpaper
 if [ "$1" != "--restore" ]; then
     printf '%s\n' "$IMG" > "$STATE"
     rm -f "$CACHE/live-wallpaper"
 fi
-
-command -v swaybg >/dev/null || exit 1
-# ---- apply ----
-OLD="$(pgrep -x swaybg)"
-setsid -f swaybg -i "$IMG" -m fill >/dev/null 2>&1
-sleep 0.3
-[ -n "$OLD" ] && kill $OLD 2>/dev/null
-pkill -x mpvpaper
 exit 0
