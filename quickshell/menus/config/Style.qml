@@ -2,10 +2,10 @@ pragma Singleton
 import QtQuick
 import Quickshell
 
-// Shared look for every menu (wallpaper picker, Wi-Fi, Bluetooth, power...).
+// Shared look for every menu (wallpaper picker, power menu).
 // Change a value here and all menus follow.
 Singleton {
-    // ---- Dracula palette ----
+    // ---- Monochrome palette ----
     readonly property color bg:        "#000000"
     readonly property color surface:   "#1c1c1c"
     readonly property color fg:        "#e0e0e0"
